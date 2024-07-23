@@ -35,13 +35,13 @@ async function onRemoveCar() {
 }
 
 async function onAddCar() {
-    await userService.login({ username: 'puk', password: 'puk' })
+    await userService.login({ username: 'puki', password: 'secret' })
     const savedCar = await carService.save(carService.getEmptyCar())
     render('Saved Car', savedCar)
 }
 
 async function onAddCarMsg() {
-    await userService.login({ username: 'muki', password: '123' })
+    await userService.login({ username: 'puki', password: 'secret' })
     const id = prompt('Car id?')
     if (!id) return
 
