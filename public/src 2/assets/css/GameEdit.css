@@ -1,0 +1,23 @@
+.game-cover-edit{
+    width: 100px;
+}
+
+.game-edit-form{
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+
+    justify-items: center;
+    align-items: center;
+}
+
+.game-edit-form>div{
+    display: flex;
+
+    justify-content: space-around;
+    gap: 2em;
+}
+
+.labels-container.form{
+    max-width: 500px;
+}

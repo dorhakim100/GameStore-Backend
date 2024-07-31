@@ -1,0 +1,126 @@
+
+.home{
+    margin-top: 0px;
+    .slider-container{
+        // margin: auto;
+        // width: 80%;
+        // border: 3px solid green;
+        // padding: 10px;
+        // transform: translate(-50%);
+        // width: 80vw;
+        // position: absolute;
+        // right: 30px;
+        // left: 30px;
+        // top: 200px;
+        max-width: 85vw;
+        img{
+    
+            width: 100%;
+            // max-width: 80vw;
+        }
+    }
+    
+
+    h4{
+
+
+
+    }
+    .companies-container{
+        // position: absolute;
+        // bottom: 2em;
+        display: flex;
+        justify-content: space-around;
+        
+        img{
+            width: 10vw;
+            max-height: 80px;
+            object-fit: scale-down;
+            height: auto;
+            cursor: pointer;
+        }
+    }
+
+    @media (min-width:600px) {
+        margin-top: 5em;
+        
+    }
+}
+
+.loader{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 100vh;
+    /* width: 100vw; */
+    
+    background-color: rgba(0, 0, 0, 0.474);
+    
+    img{
+
+    margin-top: 50vh;
+}
+}
+
+.slider-container{
+
+
+
+    .games-card-container{
+
+
+    .game-card-container{
+
+        // width: 100%;
+        .title-container{
+            display: grid;
+            grid-template-columns: repeat(1,1fr);
+            // grid-template-rows: repeat(2,1fr);
+            grid-template-rows: 20vw 150px;
+            justify-items: center;
+            padding: 25px;
+            border:3px,solid, var(--text);
+
+
+            border-radius: 5px;
+
+            // height: calc(10vw);
+            // max-height: 250px;
+
+            align-items: center;
+            margin: 15px;
+            
+            @media (max-width:600px) {
+                font-size: 0.6em;
+                overflow-x: auto;
+                padding: 0px;
+                padding-top: 15px;
+                padding-bottom: 15px;
+
+                h4{
+                    width: 40px;
+
+                }
+            }
+            // justify-items: center;
+
+        }
+
+
+        // text-align: start;
+        h4{
+            align-self: center;
+        }
+        // font-size: 0.8em;
+
+        img{
+            
+            width: 12vw;
+        }
+    }
+
+
+    }
+}

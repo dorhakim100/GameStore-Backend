@@ -1,0 +1,19 @@
+.login-page{
+    position: absolute;
+    inset-inline-end: 2em;
+    top: 8em;
+    
+
+    background-color: var(--border);
+    border: 2px solid var(--text);
+
+    z-index: 3;
+
+    .login-form{
+        display: flex;
+        flex-direction: column;
+        padding: 1em;
+    
+        gap: 1em;
+    }
+}

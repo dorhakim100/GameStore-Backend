@@ -1,0 +1,47 @@
+.about{
+    margin-bottom: 1em;
+
+    .about-container{
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        gap: 1em;
+        }
+
+        .imgs-container{
+            grid-column: 1/2;
+            display: grid;
+            grid-template-columns: 22vw 200px;
+
+            & h4{
+                align-self: center;
+
+            }
+
+            .store-img{
+                width: 20vw;
+                justify-self: center;
+            
+                margin: 1em;
+                transition: 0.3s;
+
+                &:hover{
+                    width: 22vw;
+
+                }
+            }
+        }
+
+        .about-nav-container{
+            display: flex;
+            justify-content: space-around;
+        }
+
+
+        .map-container{
+            grid-column: 1/-1;
+        
+            justify-self: center;
+        }
+
+
+}

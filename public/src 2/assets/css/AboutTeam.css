@@ -1,0 +1,8 @@
+.about-team-container{
+    display: flex;
+    justify-content: space-around;
+}
+
+.profile-container{
+    width: 10vw;
+}

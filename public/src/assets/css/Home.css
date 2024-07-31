@@ -1,0 +1,8 @@
+.controllers-container{
+    display: flex;
+    justify-content: space-between;
+}
+
+.controllers-container>img{
+    cursor: pointer;
+}

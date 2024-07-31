@@ -1,0 +1,90 @@
+.cart-container{
+
+    position: absolute;
+    // top: 5em;
+    inset-inline-end: 1em;
+    background-color: var(--border);
+    border: 2px solid var(--text);
+
+    height: 600px;
+    width: 500px;
+    z-index: 3;
+
+    @media (max-width:450px) {
+        width: 340px;
+    }
+
+    .x-button{
+        position: absolute;
+        inset-inline-end: 1em;
+        top: 1em;
+        padding: 5px;
+        border-radius: 5px;
+    }
+
+    .games-in-cart-container{
+        display: flex;
+        flex-direction: column;
+        height: 390px;
+        overflow-y: auto;
+        /* justify-content: space-between; */
+        .cart-item-container{
+            display: flex;
+        }
+
+        .game-in-cart-container{
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            /* justify-content: space-between; */
+            align-items: center;
+            justify-items: center;
+        
+            background-color: rgb(51, 51, 51);
+            border: 1px solid var(--text);
+            width: 100%;
+
+            &:nth-of-type(2n){
+                background-color: rgb(97, 97, 97);
+            }
+
+            .game-text{
+                min-width: 200px;
+                margin: 0.5em;
+                text-align: start;
+                overflow: hidden;
+            }
+
+            .game-quantity{
+                width: 30px;
+                @media (max-width:450px) {
+                    display: none;
+                    }
+            }
+
+            img{
+                width: 50px;
+                height: auto;
+                margin: 0.5em;
+                @media (max-width:450px) {
+                display: none;
+                }
+            }
+
+            span{
+                margin:0.5em;
+                color: var(--text);
+            }
+
+
+        }
+
+
+    }
+.sum-container{
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    justify-content: space-between;
+    margin: 1em;
+}
+}

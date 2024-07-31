@@ -1,0 +1,57 @@
+.section-container.game-details{
+    margin-top: 4em;
+    display: flex;
+    flex-direction: column;
+
+    justify-items: center;
+    align-items: center;
+    gap: 1em;
+    .cover-container{
+        display: flex;
+
+        &:hover .buttons-container{
+            opacity: 1;
+
+        }
+        .buttons-container{
+            position: absolute;
+            top: 40%;
+            right: 50%;
+            transform: translate(50%, -50%);
+            font-size: 1.5em;
+            
+            height: 30px;
+            /* width: 250px; */
+            
+            background-color: rgba(0, 0, 0, 0.771);
+            border: 1px solid var(--text);
+            
+            /* padding: 50px; */
+            border-radius: 25px;
+            
+            cursor: pointer;
+            opacity: 0;
+            transition: 0.2s;
+
+
+      
+            }
+            .game-details-cover{
+                width: 250px;
+            }
+        }
+}     
+ .unavailable{
+                background-color: var(--high-importance);
+                color: var(--text);
+                padding: 5px;
+                border-radius: 5px;
+                border: 1px solid var(--mid-importance);
+            
+                position: relative;
+                left: 0px;
+                top: 3em;
+            
+                transform: rotate(10deg);
+
+            }
