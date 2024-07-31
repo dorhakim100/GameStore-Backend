@@ -150,7 +150,7 @@ export function AppHeader() {
               <i class='fa-solid fa-user'></i>
               <span>{user.fullname}</span>
             </Link>
-            {user && <span>{score}$</span>}
+            {user && <span>{Math.round(score * 100) / 100}$</span>}
             <button onClick={onLogout}>Logout</button>
           </section>
         )}

@@ -14,6 +14,7 @@ export function login(credentials) {
   return userService
     .login(credentials)
     .then((user) => {
+      console.log(user)
       store.dispatch({ type: SET_USER, user })
       return user
     })

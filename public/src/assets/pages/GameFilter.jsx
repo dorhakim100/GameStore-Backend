@@ -246,6 +246,7 @@ export function GameFilter({ filterBy }) {
                   type='checkbox'
                   name='companies'
                   id={company}
+                  checked={filterBy.companies.includes(company)}
                 />
               </div>
             )

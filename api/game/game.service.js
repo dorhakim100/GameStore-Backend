@@ -47,7 +47,7 @@ async function getById(gameId) {
 
 async function remove(gameId) {
   try {
-    const collection = await dbService.getCollection('game')
+    const collection = await dbService.getCollection('games')
     const { deletedCount } = await collection.deleteOne({
       _id: ObjectId.createFromHexString(gameId),
     })
@@ -60,7 +60,7 @@ async function remove(gameId) {
 
 async function add(game) {
   try {
-    const collection = await dbService.getCollection('game')
+    const collection = await dbService.getCollection('games')
     await collection.insertOne(game)
     return game
   } catch (err) {
@@ -72,10 +72,15 @@ async function add(game) {
 async function update(game) {
   try {
     const gameToSave = {
-      vendor: game.vendor,
+      name: game.name,
       price: game.price,
+      labels: game.labels,
+      inStock: game.inStock,
+      companies: game.companies,
+      cover: game.cover,
+      preview: game.preview,
     }
-    const collection = await dbService.getCollection('game')
+    const collection = await dbService.getCollection('games')
     await collection.updateOne(
       { _id: ObjectId.createFromHexString(game._id) },
       { $set: gameToSave }
