@@ -103,7 +103,7 @@ async function add(user) {
         'https://www.shareicon.net/data/512x512/2016/09/15/829459_man_512x512.png',
       isAdmin: user.fullname === 'Dor Hakim' ? true : false,
     }
-    const collection = await dbService.getCollection('users')
+    const collection = await dbService.getCollection('user')
     await collection.insertOne(userToAdd)
     return userToAdd
   } catch (err) {
