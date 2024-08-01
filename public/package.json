@@ -36,6 +36,7 @@
     "rsuite": "^5.67.0",
     "slick-carousel": "^1.8.1",
     "styled-components": "^6.1.12",
+    "sweetalert2": "^11.12.4",
     "yup": "^1.4.0"
   },
   "devDependencies": {

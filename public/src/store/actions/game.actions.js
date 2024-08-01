@@ -57,6 +57,7 @@ export function removeGameOptimistic(gameId) {
 }
 
 export function saveGame(game) {
+  console.log(game)
   const type = game._id ? UPDATE_GAME : ADD_GAME
   return gameService
     .save(game)

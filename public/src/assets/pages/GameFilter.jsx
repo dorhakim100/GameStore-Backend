@@ -169,7 +169,7 @@ export function GameFilter({ filterBy }) {
       companies: [],
     })
   }
-
+  const initialValue = ''
   return (
     <div className='filtering-container'>
       <Button
@@ -179,6 +179,18 @@ export function GameFilter({ filterBy }) {
       >
         Filter
       </Button>
+      {/* <span className='filter-term'>
+        {(filterBy.txt !== '' && filterBy.txt) ||
+          filterBy.companies.reduce(
+            (accumulator, currentValue) => accumulator + currentValue + ',',
+            initialValue
+          ) ||
+          filterBy.labels.reduce(
+            (accumulator, currentValue) => accumulator + currentValue + ',',
+            initialValue
+          ) ||
+          'Our Games'}
+      </span> */}
       <input
         className='is-filtering-checkbox'
         type='checkbox'
@@ -215,13 +227,23 @@ export function GameFilter({ filterBy }) {
           </Search>
         </div>
         <div className='price-container'>
-          <label htmlFor='price'>Max Price</label>
+          <label htmlFor='price'>Max Price:</label>
+          {/* <span>{filterBy.maxPrice}$</span> */}
+          <input
+            className='max-price-input'
+            type='number'
+            onChange={handleChange}
+            id='price'
+            name='maxPrice'
+            value={filterBy.maxPrice}
+          />
+          <span>$</span>
           <input
             onChange={handleChange}
             type='range'
             id='price'
             min={1}
-            max={150}
+            max={250}
             name='maxPrice'
           />
         </div>

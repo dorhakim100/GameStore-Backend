@@ -115,21 +115,6 @@ export function GameIndex() {
               renderInput={(params) => <TextField {...params} label='Sort' />}
             />
           </div>
-          {/* <label htmlFor='sortBy'>Sort By:</label>
-          <input
-          onChange={onSort}
-          list='sortOptions'
-          name='sortOption'
-            id='sortOption'
-          />
-          <datalist id='sortOptions'>
-            <option>Name Descending</option>
-            <option>Name Ascending</option>
-            <option>Price Descending</option>
-            <option>Price Ascending</option>
-            <option>Time Descending</option>
-            <option>Time Ascending</option>
-          </datalist> */}
         </div>
         {user.isAdmin && (
           <Link to={`/game/edit`}>
@@ -137,17 +122,18 @@ export function GameIndex() {
           </Link>
         )}
       </div>
-
       {!isLoading && <GamesList games={games} />}
 
       <div className='page-container'>
-        <Button variant='contained' onClick={() => onChangePageIdx(-1)}>
-          <i className='fa-solid fa-arrow-left'></i>
-        </Button>
-        <span>{filterBy.pageIdx + 1}</span>
-        <Button variant='contained' onClick={() => onChangePageIdx(1)}>
-          <i className='fa-solid fa-arrow-right'></i>
-        </Button>
+        <span className='page-idx'>{filterBy.pageIdx + 1}</span>
+        <div className='buttons-container'>
+          <Button variant='contained' onClick={() => onChangePageIdx(-1)}>
+            <i className='fa-solid fa-arrow-left'></i>
+          </Button>
+          <Button variant='contained' onClick={() => onChangePageIdx(1)}>
+            <i className='fa-solid fa-arrow-right'></i>
+          </Button>
+        </div>
       </div>
     </section>
   )

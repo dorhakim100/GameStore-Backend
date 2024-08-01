@@ -1,33 +1,53 @@
 import { useEffect, useState } from 'react'
 
 import { userService } from '../../services/user.service.js'
+import { saveGame } from '../../store/actions/game.actions.js'
+import { showSuccessMsg } from '../../services/event-bus.service.js'
 
-export function Reviews({ game, removeReview }) {
+export function Reviews({ game, removeReview, reviews, setReviews }) {
   // const { reviews } = book
   // const [reviews, setReviews] = useState(book.reviews)
   const [user, setUser] = useState(userService.getLoggedinUser() || {})
-
-  const reviews = game.reviews || [
-    {
-      fullName: 'Name',
-      date: 'now',
-      rating: 4,
-      txt: 'bla bla',
-    },
-    {
-      fullName: 'Name',
-      date: 'now',
-      rating: 4,
-      txt: 'bla bla',
-    },
-    {
-      fullName: 'Name',
-      date: 'now',
-      rating: 4,
-      txt: 'bla bla',
-    },
-  ]
   console.log(reviews)
+  useEffect(() => {
+    console.log(game.reviews)
+    // setReviews(game.reviews)
+  }, [])
+
+  // const reviews = game.reviews || [
+  //   {
+  //     fullName: 'Name',
+  //     date: 'now',
+  //     rating: 4,
+  //     txt: 'bla bla',
+  //   },
+  //   {
+  //     fullName: 'Name',
+  //     date: 'now',
+  //     rating: 4,
+  //     txt: 'bla bla',
+  //   },
+  //   {
+  //     fullName: 'Name',
+  //     date: 'now',
+  //     rating: 4,
+  //     txt: 'bla bla',
+  //   },
+  // ]
+
+  function removeReview(reviewIdx) {
+    // console.log(reviews)
+    game.reviews.splice(reviewIdx, 1)
+    saveGame(game).then(() => {
+      // swal.fire({
+      //   // title: 'success',
+      //   text: 'Review removed successfully',
+      //   icon: 'success',
+      // })
+      showSuccessMsg('Review deleted')
+      setReviews([...game.reviews])
+    })
+  }
 
   function onRemoveReview(id) {
     // console.log(id)

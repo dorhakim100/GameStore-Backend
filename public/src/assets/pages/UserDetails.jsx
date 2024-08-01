@@ -18,7 +18,7 @@ export function UserDetails() {
   }, [])
 
   function getOrderDate(placedAt) {
-    const date = new Date(user.orders[0].placedAt).toLocaleDateString()
+    const date = new Date(placedAt).toLocaleDateString('he')
     return date
   }
 
@@ -26,45 +26,47 @@ export function UserDetails() {
     <section className='section-container user-details'>
       <h2>Hello {user && user.fullname}</h2>
       <h3>Orders</h3>
-      {(orders.length === 0 && (
-        <Link to={`/game/`}>Place an order first</Link>
-      )) ||
-        (orders.length > 0 && (
-          <table>
-            <tr>
-              <td>Order ID</td>
-              <td>Placed At</td>
-              <td>Amount</td>
-              <td>Status</td>
-              <td>Items</td>
-            </tr>
+      <div className='orders-container'>
+        {(orders.length === 0 && (
+          <Link to={`/game/`}>Place an order first</Link>
+        )) ||
+          (orders.length > 0 && (
+            <table>
+              <tr>
+                <td>Order ID</td>
+                <td>Placed At</td>
+                <td>Amount</td>
+                <td>Status</td>
+                <td>Items</td>
+              </tr>
 
-            {orders.map((order) => {
-              return (
-                <tr className='order-container' key={order}>
-                  <td>{order._id || '1111'}</td>
-                  <td>{getOrderDate(order.placedAt)}</td>
-                  <td>{order.amount}$</td>
-                  <td>{order.statue || 'Placed'}</td>
-                  <td className='items-container'>
-                    {order.items.map((item) => {
-                      return (
-                        <Link
-                          to={`/game/${item._id}`}
-                          className='item-container'
-                          key={item}
-                        >
-                          <span>{item.name}</span>
-                          <img src={item.cover} alt='' />
-                        </Link>
-                      )
-                    })}
-                  </td>
-                </tr>
-              )
-            })}
-          </table>
-        ))}
+              {orders.map((order) => {
+                return (
+                  <tr className='order-container' key={order}>
+                    <td>{order._id || '1111'}</td>
+                    <td>{getOrderDate(order.placedAt)}</td>
+                    <td>{order.amount}$</td>
+                    <td>{order.statue || 'Placed'}</td>
+                    <td className='items-container'>
+                      {order.items.map((item) => {
+                        return (
+                          <Link
+                            to={`/game/${item._id}`}
+                            className='item-container'
+                            key={item}
+                          >
+                            <span>{item.name}</span>
+                            <img src={item.cover} alt='' />
+                          </Link>
+                        )
+                      })}
+                    </td>
+                  </tr>
+                )
+              })}
+            </table>
+          ))}
+      </div>
     </section>
   )
 }

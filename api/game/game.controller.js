@@ -42,6 +42,7 @@ export async function addGame(req, res) {
   try {
     const game = req.body
     game.owner = loggedinUser
+    if (!game.reviews) game.reviews = []
     const addedGame = await gameService.add(game)
     res.json(addedGame)
   } catch (err) {
@@ -52,6 +53,7 @@ export async function addGame(req, res) {
 
 export async function updateGame(req, res) {
   try {
+    console.log('req: ', req.body)
     const game = req.body
     const updatedGame = await gameService.update(game)
     res.json(updatedGame)

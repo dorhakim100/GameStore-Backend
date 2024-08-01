@@ -176,7 +176,12 @@ export function GameEdit() {
         </div>
         <div>
           <label htmlFor=''>In Stock</label>
-          <input onChange={handleChange} type='checkbox' name={'inStock'} />
+          <input
+            checked={editGame.inStock}
+            onChange={handleChange}
+            type='checkbox'
+            name={'inStock'}
+          />
         </div>
         <div>
           <label htmlFor=''>Preview:</label>

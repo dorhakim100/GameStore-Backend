@@ -1,4 +1,9 @@
 .app-header{
+
+    @media (max-width:500px) {
+        max-width: 92vw;
+        
+    }
     position: absolute;
     top: 0;
     left: 0;
@@ -91,7 +96,7 @@
             justify-items: center;
             gap: 1em; 
             span{
-                    @media (max-width:500px) {
+                    @media (max-width:800px) {
                         
                         display: none;
         
@@ -132,6 +137,9 @@
         }
         .cart-button-container{
             display: flex;
+            @media (max-width:800px) {
+                display: none;   
+               }
 
             .cart-button{
                 z-index: 0;

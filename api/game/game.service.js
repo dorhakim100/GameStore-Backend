@@ -34,8 +34,11 @@ async function query(filterBy = { txt: '' }) {
       const regex = new RegExp(filterBy.txt, 'i')
       criteria.name = { $regex: regex }
     }
+    console.log(filterBy)
+    let price = filterBy.maxPrice
     if (filterBy.maxPrice) {
-      criteria.price = { $lt: filterBy.maxPrice }
+      price = +price
+      criteria.price = { $lt: price }
     }
     if (filterBy.companies.length > 0) {
       criteria.companies = { $all: filterBy.companies }
@@ -141,6 +144,7 @@ async function add(game) {
 
 async function update(game) {
   try {
+    console.log(game)
     const gameToSave = {
       name: game.name,
       price: game.price,
@@ -149,6 +153,7 @@ async function update(game) {
       companies: game.companies,
       cover: game.cover,
       preview: game.preview,
+      reviews: game.reviews,
     }
     const collection = await dbService.getCollection('games')
     await collection.updateOne(

@@ -1,11 +1,18 @@
 import { utilService } from '../../services/util.service.js'
+import { userService } from '../../services/user.service.js'
 import { useEffect, useState } from 'react'
 
-export function AddReview({ book, saveReview }) {
+import { showSuccessMsg } from '../../services/event-bus.service.js'
+import { showErrorMsg } from '../../services/event-bus.service.js'
+import { saveGame } from '../../store/actions/game.actions.js'
+
+import Swal from 'sweetalert2'
+
+export function AddReview({ game, setReviews }) {
   // const [reviews, setTheReviews] = useState(book.reviews)
-
+  const [user, setUser] = useState(userService.getLoggedinUser() || {})
   // const reviews = book.reviews
-
+  console.log(game)
   function onStarClick({ target }) {
     const rating = +target.value
     console.log(rating)
@@ -20,24 +27,25 @@ export function AddReview({ book, saveReview }) {
   // const inputRef = useRef()
 
   const [review, setReview] = useState({
-    fullName: 'Books Reader',
+    fullName: user.fullname || `Player`,
     rating: 0,
     date: new Date().toISOString().slice(0, 10),
     txt: '',
   })
 
-  // useEffect(() => {
-  //   // console.log('inputRef:', inputRef)
-  //   inputRef.current.focus()
-  // }, [])
+  useEffect(() => {}, [])
 
   function onAddReview() {
+    if (Object.keys(user).length === 0) {
+      showErrorMsg('Please login to add review')
+      return
+    }
     // book.reviews.unshift(review)
     // book.reviews[0].id = utilService.makeId()
     // console.log(review)
     saveReview(review)
     setReview({
-      fullName: 'Books Reader',
+      fullName: `Player`,
       rating: 0,
       date: new Date().toISOString().slice(0, 10),
       txt: '',
@@ -50,6 +58,34 @@ export function AddReview({ book, saveReview }) {
   }
 
   const { fullName, date, txt } = review
+  console.log(fullName)
+  function saveReview(review) {
+    if (!game.reviews) game.reviews = []
+    review.id = utilService.makeId()
+    game.reviews.unshift(review)
+    console.log(game)
+    console.log(review)
+
+    saveGame(game)
+      .then(() => {
+        console.log('works')
+        // showSuccessMsg('Review saved')
+        Swal.fire({
+          text: 'Review saved successfully',
+          icon: 'success',
+        })
+
+        setReviews([...game.reviews])
+      })
+      .catch((err) => {
+        showErrorMsg('Cannot save review')
+        console.log('err:', err)
+      })
+
+    // booksService.save(book).then(() => {
+    //   setReviews(...book.reviews)
+    // })
+  }
 
   return (
     <div className='new-review-container'>

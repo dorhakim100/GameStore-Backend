@@ -6,6 +6,8 @@
 }
 
 
+
+
 .filtering-container>input[type='checkbox']{
     display: none;
 }
@@ -106,4 +108,31 @@
     gap: 1em;
 
 
+}
+
+.filter-term{
+    background-color: var(--blue);
+    padding: 5px;
+    border-radius: 5px;
+    min-width: 80px;
+}
+
+.max-price-input{
+    width: 50px;
+}
+@media (max-width:850px) {
+    
+    .filter-term{
+       display: none;
+    }   
+}
+@media (max-width:500px) {
+    .game-filter{
+        position: absolute;
+        top: 0px;
+        /* left: 0; */
+        /* right: 0px; */
+        bottom: 0;
+
+    }
 }
