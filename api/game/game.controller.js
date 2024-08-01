@@ -2,11 +2,21 @@ import { gameService } from './game.service.js'
 import { logger } from '../../services/logger.service.js'
 
 export async function getGames(req, res) {
+  console.log(req.query)
   try {
+    const { txt, maxPrice, inStock, companies, sortBy, pageIdx, labels } =
+      req.query
     const filterBy = {
-      txt: req.query.txt || '',
+      txt: txt || '',
+      maxPrice: maxPrice || '',
+      inStock: inStock || 'all',
+      companies: companies || [],
+      labels: labels || [],
+      sortBy: sortBy || '',
+      pageIdx: pageIdx,
     }
     const games = await gameService.query(filterBy)
+
     res.json(games)
   } catch (err) {
     logger.error('Failed to get games', err)

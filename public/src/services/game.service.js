@@ -4,6 +4,7 @@ import { utilService } from './util.service.js'
 import { userService } from './user.service.js'
 
 const STORAGE_KEY = 'game'
+const PAGE_SIZE = 6
 
 export const gameService = {
   query,
@@ -96,6 +97,7 @@ function getMaxPage(filterBy) {
   //   return maxPage
   // })
   return query(filterToSet).then((games) => {
+    console.log(games)
     const gamesLength = games.length
     const maxPage = Math.ceil(gamesLength / PAGE_SIZE)
     console.log(maxPage)

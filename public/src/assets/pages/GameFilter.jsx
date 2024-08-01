@@ -232,7 +232,7 @@ export function GameFilter({ filterBy }) {
             type='checkbox'
             name=''
             id='stock'
-            checked={isStock}
+            checked={filterBy.inStock === 'all' ? false : true}
           />
         </div>
         <h4>Company:</h4>
@@ -263,6 +263,7 @@ export function GameFilter({ filterBy }) {
                   type='checkbox'
                   name='labels'
                   id={label}
+                  checked={filterBy.labels.includes(label)}
                 />
               </div>
             )
