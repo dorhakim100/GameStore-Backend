@@ -1,11 +1,31 @@
 .section-container.game-details{
+    max-width: 1800px;
     margin-top: 4em;
-    display: flex;
-    flex-direction: column;
 
-    justify-items: center;
-    align-items: center;
-    gap: 1em;
+    @media (min-width:1200px) {
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+
+
+        .game-page{
+            grid-column: 1/2;
+            grid-row: 1/-1;
+        }
+        .review-container{
+            
+            grid-row: 1/-1;
+            grid-column: 2/3;
+        }
+    }
+    .game-page{
+        display: flex;
+        flex-direction: column;
+    
+        justify-items: center;
+        align-items: center;
+        gap: 1em;
+
+    }
     .cover-container{
         display: flex;
 
