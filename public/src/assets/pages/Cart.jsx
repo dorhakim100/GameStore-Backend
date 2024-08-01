@@ -73,6 +73,7 @@ export function Cart({ toggleCart, setScore }) {
     const newScore = user.score - sum
     checkoutStore(newScore).then(() => {
       setScore(newScore)
+      toggleCart()
       showSuccessMsg('Order placed')
       navigate(`/user/${user._id}`)
     })

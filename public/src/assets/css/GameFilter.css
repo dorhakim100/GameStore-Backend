@@ -36,6 +36,7 @@
 
     background-color: var(--hover-back-shadow);
     border: solid 2px var(--text);
+    border-radius: 5px;
 
     position: fixed;
     top: 200px;

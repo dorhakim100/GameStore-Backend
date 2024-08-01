@@ -158,7 +158,7 @@ function checkout(newScore) {
 
 function setOrder(newOrder) {
   let user = getLoggedinUser()
-  user.orders.push(newOrder)
+  user.orders.unshift(newOrder)
   const newUser = _setLoggedinUser({
     ...user,
   })
