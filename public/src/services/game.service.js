@@ -90,7 +90,7 @@ function getDefaultFilter() {
 }
 
 function getMaxPage(filterBy) {
-  const filterToSet = { ...filterBy, pageIdx: undefined }
+  const filterToSet = { ...filterBy, pageIdx: undefined, isAllGames: true }
   // return query(filterToSet).then((games) => {
   //   const gamesLength = games.length
   //   const maxPage = Math.ceil(gamesLength / PAGE_SIZE)

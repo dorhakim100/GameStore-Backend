@@ -1,13 +1,14 @@
 .app-header{
 
     @media (max-width:500px) {
-        max-width: 92vw;
+        // max-width: 92vw;
         
     }
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
+    z-index: 3;
     // margin: auto 0;
     // margin-left: 0px;
     // margin-right: 0px;
@@ -58,17 +59,16 @@
             justify-content: space-around;
             gap: 1.5em;
             padding: 15px;
-
             @media (max-width:900px) {
-             display: none;   
+                display: none;   
             }
-
+            
             .active{
                 border-bottom: 01px solid var(--border);
                 color: rgb(48, 22, 114);
                 box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
             }
-
+            
             a{
                 padding: 5px;
                 color: white;
@@ -76,7 +76,7 @@
                 // border: 1px solid var(--border);
                 box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;                border-radius: 5px;
             }
-
+            
             &::after{
                 position: relative;
                 top: 0px;
@@ -87,7 +87,8 @@
                 border-radius: 5px;
                 background-color: rgba(26, 26, 26, 0.376);
                 box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;         
-               }
+            }
+
         }
         
         .login-container{
@@ -199,3 +200,7 @@
     }
 }
 
+.nav-button{
+    width: 50vw;
+    height: 8vh;
+}

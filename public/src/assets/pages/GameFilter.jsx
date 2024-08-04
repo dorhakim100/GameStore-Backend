@@ -85,9 +85,11 @@ export function GameFilter({ filterBy }) {
   const debouncedSetFilter = useRef(utilService.debounce(setOnFilterBy, 500))
 
   //   const isCheckRef = useRef()
-
+  // const [onFilterBy, setOnFilterBy] = useState(filterBy)
+  // const debouncedSetFilter = useRef(utilService.debounce(setOnFilterBy, 500))
   useEffect(() => {
-    setFilterBy(onFilterBy)
+    // setIsLoadingTrue()
+    setTimeout(() => setFilterBy(onFilterBy), 500)
   }, [onFilterBy])
 
   function onSetIsFiltering() {
@@ -105,21 +107,32 @@ export function GameFilter({ filterBy }) {
   }
 
   function handleChange({ target }) {
-    setIsLoadingTrue()
     let field = target.name
     let value = target.value
     let checkedButton = target.id
 
-    if (!field) {
+    console.log(value)
+
+    if (field === '') {
       field = 'txt'
     }
+    console.log(field)
 
     switch (target.type) {
       case 'number':
+        value = +value || ''
+        setOnFilterBy({ ...onFilterBy, maxPrice: value, pageIdx: 0 })
+        return
+        break
       case 'range':
         value = +value || ''
-        // setOnFilterBy({ ...onFilterBy, maxPrice: value, pageIdx: 0 })
-
+        setOnFilterBy({ ...onFilterBy, maxPrice: value, pageIdx: 0 })
+        // debouncedSetFilter.current((prevFilter) => ({
+        //   ...prevFilter,
+        //   [field]: value,
+        //   pageIdx: 0,
+        // }))
+        return
         break
 
       case 'checkbox':
@@ -147,17 +160,28 @@ export function GameFilter({ filterBy }) {
         }
         return
         break
-
-      default:
-        break
     }
-
     debouncedSetFilter.current((prevFilter) => ({
       ...prevFilter,
       [field]: value,
       pageIdx: 0,
     }))
   }
+
+  function onSort(ev, value) {
+    const newSortBy = value.replace(' ', '')
+
+    setFilterBy({ ...filterBy, sortBy: newSortBy, pageIdx: 0 })
+  }
+
+  const options = [
+    'Name Descending',
+    'Name Ascending',
+    'Price Descending',
+    'Price Ascending',
+    'Time Descending',
+    'Time Ascending',
+  ]
 
   function onClearFilter() {
     setOnFilterBy({
@@ -199,7 +223,24 @@ export function GameFilter({ filterBy }) {
         checked={isFiltering}
         // ref={isCheckRef}
       />
-      <Search onChange={handleChange} id='name' name='txt'>
+      <div className='sort-container'>
+        <Autocomplete
+          onChange={onSort}
+          disablePortal
+          id='combo-box-demo'
+          options={options}
+          sx={{
+            width: 150,
+            // input: { color: 'white' },
+            backgroundColor: 'white',
+            borderRadius: '5px',
+          }}
+          renderInput={(params) => (
+            <TextField {...params} label='Sort' fontColor='green' />
+          )}
+        />
+      </div>
+      {/* <Search onChange={handleChange} id='name' name='txt'>
         <SearchIconWrapper>
           <SearchIcon />
         </SearchIconWrapper>
@@ -207,8 +248,8 @@ export function GameFilter({ filterBy }) {
           placeholder='Search...'
           inputProps={{ 'aria-label': 'search' }}
         />
-      </Search>
-
+      </Search> */}
+      {filterBy.txt && <h3>{filterBy.txt}</h3>}
       <div className='game-filter'>
         <button className='x-button' onClick={() => onSetIsFiltering()}>
           X
@@ -235,7 +276,7 @@ export function GameFilter({ filterBy }) {
             onChange={handleChange}
             id='price'
             name='maxPrice'
-            value={filterBy.maxPrice}
+            value={onFilterBy.maxPrice || 250}
           />
           <span>$</span>
           <input

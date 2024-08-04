@@ -8,7 +8,9 @@ function SimpleSlider({ img1, img2, img3 }) {
   const settings = {
     dots: true,
     infinite: true,
-    speed: 500,
+    speed: 1500,
+    autoplay: true,
+    autoplaySpeed: 5000,
     slidesToShow: 1,
     slidesToScroll: 1,
   }

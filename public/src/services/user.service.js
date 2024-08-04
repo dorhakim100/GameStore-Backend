@@ -94,8 +94,7 @@ function addGameToCart(gameToAdd) {
   return httpService
     .put(`user/${user._id}`, { ...user, gamesInCart: [...user.gamesInCart] })
     .then((user) => {
-      _setLoggedinUser(user)
-      return user.score
+      return _setLoggedinUser(user)
     })
   // return storageService
   //   .put(STORAGE_KEY, { ...user, gamesInCart: [...user.gamesInCart] })

@@ -5,6 +5,7 @@ import { useState, useRef, useEffect } from 'react'
 import { setFilterBy } from '../../store/actions/game.actions.js'
 import { utilService } from '../../services/util.service.js'
 import { gameService } from '../../services/game.service.js'
+import { setCart } from '../../store/actions/user.actions.js'
 
 import { UserMsg } from './UserMsg.jsx'
 import { LoginSignup } from './LoginSignup.jsx'
@@ -44,6 +45,8 @@ export function AppHeader() {
     (stateSelector) => stateSelector.userModule.shoppingCart
   )
 
+  const [localCart, setLocalCart] = useState(storeCart)
+
   const [cartLength, setCartLength] = useState(0)
 
   const navBarRef = useRef()
@@ -59,12 +62,16 @@ export function AppHeader() {
   }
 
   useEffect(() => {
+    console.log(storeCart)
+    console.log(user)
     setUser(user)
     if (user === null) {
+      setLocalCart([])
       return
     }
+    setLocalCart(user.gamesInCart)
     setScore(user.score)
-  }, [])
+  }, [user])
 
   function onLogout() {
     // userService
@@ -118,15 +125,7 @@ export function AppHeader() {
         />
         <nav className='app-nav'>
           <NavLink to='/'>Home</NavLink>
-          <NavLink
-            onClick={() => {
-              event.preventDefault()
-              setFilterBy(gameService.getDefaultFilter())
-            }}
-            to='/game'
-          >
-            Games
-          </NavLink>
+          <NavLink to='/game'>Games</NavLink>
           <NavLink to='/dashboard'>Dashboard</NavLink>
           <NavLink to='/about'>About</NavLink>
         </nav>
@@ -163,7 +162,14 @@ export function AppHeader() {
           )}
         </div>
       </section>
-      {isCart && <Cart toggleCart={toggleCart} setScore={setScore} />}
+      {isCart && (
+        <Cart
+          toggleCart={toggleCart}
+          setScore={setScore}
+          localCart={localCart}
+          setLocalCart={setLocalCart}
+        />
+      )}
       <UserMsg />
       <NavBar
         navBarRef={navBarRef}

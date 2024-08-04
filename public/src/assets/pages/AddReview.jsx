@@ -1,6 +1,6 @@
 import { utilService } from '../../services/util.service.js'
 import { userService } from '../../services/user.service.js'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 
 import { showSuccessMsg } from '../../services/event-bus.service.js'
 import { showErrorMsg } from '../../services/event-bus.service.js'
@@ -9,22 +9,9 @@ import { saveGame } from '../../store/actions/game.actions.js'
 import Swal from 'sweetalert2'
 
 export function AddReview({ game, setReviews }) {
-  // const [reviews, setTheReviews] = useState(book.reviews)
   const [user, setUser] = useState(userService.getLoggedinUser() || {})
-  // const reviews = book.reviews
-  console.log(game)
-  function onStarClick({ target }) {
-    const rating = +target.value
-    console.log(rating)
-    setReview({
-      fullName: fullName,
-      rating: rating,
-      date: date,
-      txt: txt,
-    })
-  }
 
-  // const inputRef = useRef()
+  const rating = useRef(0)
 
   const [review, setReview] = useState({
     fullName: user.fullname || `Player`,
@@ -33,7 +20,18 @@ export function AddReview({ game, setReviews }) {
     txt: '',
   })
 
-  useEffect(() => {}, [])
+  function onStarClick({ target }) {
+    rating.current = +target.value
+    console.log(rating.current)
+    // setReview({
+    //   fullName: fullName,
+    //   rating: rating,
+    //   date: date,
+    //   txt: txt,
+    // })
+  }
+
+  // useEffect(() => {}, [])
 
   function onAddReview() {
     if (Object.keys(user).length === 0) {
@@ -46,10 +44,15 @@ export function AddReview({ game, setReviews }) {
     saveReview(review)
     setReview({
       fullName: `Player`,
-      rating: 0,
+      rating: rating.current,
       date: new Date().toISOString().slice(0, 10),
       txt: '',
+      owner: {
+        fullname: user.fullname,
+        userId: user._id,
+      },
     })
+    console.log(review)
   }
 
   function handleChange({ target }) {

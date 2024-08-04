@@ -14,6 +14,7 @@ export const TOGGLE_CART_IS_SHOWN = 'TOGGLE_CART_IS_SHOWN'
 export const ADD_GAME_TO_CART = 'ADD_GAME_TO_CART'
 export const REMOVE_GAME_FROM_CART = 'REMOVE_GAME_FROM_CART'
 export const CLEAR_CART = 'CLEAR_CART'
+export const SET_CART = 'SET_CART'
 
 const user = userService.getLoggedinUser()
 
@@ -68,6 +69,9 @@ export function userReducer(state = initialState, action = {}) {
     case REMOVE_GAME_FROM_CART:
       console.log(action.updatedUser)
       return { ...state, shoppingCart: action.updatedUser.gamesInCart }
+
+    case SET_CART:
+      return { ...state, shoppingCart: action.updatedCart }
 
     case CLEAR_CART:
       return { ...state, shoppingCart: [] }

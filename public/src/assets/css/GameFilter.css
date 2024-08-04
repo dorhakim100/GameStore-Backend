@@ -1,8 +1,13 @@
 
 .filtering-container{
     display: flex;
-    justify-content: space-between;
-    width: 40vw;
+    justify-content: space-around;
+
+    gap: 5px;
+    align-items: center;
+    width: 50vw;
+
+
 }
 
 
@@ -46,7 +51,7 @@
 
 
     transition: 0.3s;
-    z-index: 3;
+    z-index: 6;
 }
 
 .x-button{
@@ -95,6 +100,7 @@
 
     margin: 0 auto;
 
+    
     display: flex;
     gap: 1em;
 }
@@ -129,11 +135,16 @@
 }
 @media (max-width:500px) {
     .game-filter{
-        position: absolute;
-        top: 0px;
-        /* left: 0; */
-        /* right: 0px; */
-        bottom: 0;
+        position: fixed;
+        top: 1em;
 
+        /* bottom: 0; */
+        width: 85vw;
+        height: 80vh;
+        overflow-y: auto;
+
+    }
+    .price-container{
+        flex-direction: column;
     }
 }

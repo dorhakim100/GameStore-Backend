@@ -36,6 +36,13 @@ export function showSuccessMsg(txt) {
     icon: 'success',
   })
 }
+export function showInfoMsg(txt) {
+  // showUserMsg({txt, type: 'success'})
+  Swal.fire({
+    text: txt,
+    icon: 'info',
+  })
+}
 export function showErrorMsg(txt) {
   //   showUserMsg({ txt, type: 'error' })
   Swal.fire({

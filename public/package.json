@@ -19,6 +19,7 @@
     "axios": "^1.7.2",
     "bootstrap": "^5.3.3",
     "faker": "^5.5.3",
+    "flowbite": "^2.4.1",
     "flowbite-react": "^0.10.1",
     "font-awesome": "^4.7.0",
     "formik": "^2.4.6",

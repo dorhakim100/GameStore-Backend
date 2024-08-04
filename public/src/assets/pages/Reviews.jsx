@@ -57,7 +57,7 @@ export function Reviews({ game, removeReview, reviews, setReviews }) {
     removeReview(reviewIdx)
   }
   return (
-    <div>
+    <section>
       <h3>Reviews</h3>
 
       {reviews.length === 0 && <p>Couldn't find reviews...</p>}
@@ -81,7 +81,7 @@ export function Reviews({ game, removeReview, reviews, setReviews }) {
           )
         })}
       </div>
-    </div>
+    </section>
   )
 
   function Stars({ rate }) {

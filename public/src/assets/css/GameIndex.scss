@@ -1,5 +1,97 @@
 .game-index{
+    margin-top: 10em;
+    // min-width: 100%;
+}
+.company-header-container {
+    text-align: start;
+    padding: 1em;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    position: absolute;
+    top: 5em;
+    // width: 100vw;
+    // margin: 0;
+    left: 0px;
+    right: 0px;
+
+
+    svg{
+        
+        width: 3em;
+
+
+    }
+    i{
+        font-size: 3em;
+    }
+
+}
+.playstation-header{
+    background-color: var(--playstation-blue);
+
+}
+.switch-header{
+    background-color: var(--switch-red);
+
+}
+.xbox-header{
+    background-color: var(--xbox-green);
+
+}
+.main-header{
+    background-color: var(--purple);
+
+}
+
+.imgs-container.game-index{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-template-rows: repeat(2,1fr);
+    align-items: center;
+    justify-items: center;
+    gap: 1em;
     margin-top: 2em;
+    max-width: 1200px;
+    *{
+        border-radius: 5px;
+        border: 1px solid var(--text);
+  
+    }
+    @media (max-width:650px) {
+        display: block;
+    }
+    
+    img{      
+        transition: 0.2s;
+
+        &:hover{
+              transform: scale(1.1);
+        }
+        // width: 40vw;
+        width: 90%;
+        height: auto;
+        object-fit: cover;
+        object-fit: fill;
+        @media (max-width:650px) {
+            display: block;
+            width: 100%;
+            padding: 5px;
+        }
+    }
+
+    .video{
+        grid-column: 1/-1;
+        width: 100%;
+        @media (max-width:650px) {
+            display: block;
+            // height: 25vh;
+            padding: 5px;
+        }
+    }
 }
 
 .game-index-user-interface{
@@ -9,42 +101,75 @@
         
     }
     display: flex;
+    justify-content: space-around;
+    // display: grid;
+    // grid-template-rows: repeat(2,1fr);
+    // grid-template-columns: repeat(6,1fr);
     justify-items: center;
     align-items: center;
     gap: 25px;
+    background-color: var(--text);
+    border-radius: 10px;
 
+    padding: 1em;
+
+    .user-buttons-container{
+        grid-column: 1/-1;
+        display: flex;
+        align-items: center;
+    }
+    .page-container{
+        grid-column: 1/-1;
     justify-content: space-between;
 
+    }
     // position: absolute;
     // top: 100px;
     // left: 0px;
     // right: 0px;
     margin: 25px;
-    .sort-container{
-        /* height: 100px; */
-        /* width: 200px; */
-        background-color: var(--text);
-        padding: 15px;
-        border-radius: 15px;
-        @media (max-width:800px) {
-            display: none;
-        }
+    @media (max-width:800px) {
+        // position: relative;
+        
+        top: 8em;
+    }
+
+    h3{
+        border: 1px solid var(--text);
+        background-color: var(--border);
+        border-radius: 5px;
+        padding-right: 5px;
+        padding-left: 5px;
+        // width: 20px;
+        font-weight: bold; 
+    }
+}
+.sort-container{
+    //  width: 200px; 
+    // padding: 15px;
+
+    // color: var(--text);
+    border-radius: 15px;
+    input{
+         
+        //  color: #eaeaea;
+        // background-color: var(--border);
 
     }
     @media (max-width:800px) {
-        // position: relative;
-
-        top: 8em;
+        display: none;
     }
+
 }
 
 .games-container{
     max-width: 1280px;
+    height: 655px;
     margin: 0 auto;
     
     @media (max-width:500px) {
         width: 200px;
-        
+
     }
 
     // display: flex;
@@ -52,7 +177,7 @@
 
     display: grid;
     grid-template-columns: repeat(3,1fr);
-    // grid-template-rows: repeat(2,300px);
+    grid-template-rows: repeat(2,300px);
 
     // background-color: rgb(240, 240, 240);
 
@@ -71,6 +196,8 @@
     @media (max-width:650px) {
         // display: block;
         grid-template-columns: 1fr;
+        height: 100%;
+
     }
 
     .game-container{
@@ -92,7 +219,7 @@
 
         box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;            //   background-color: var(--blue);
         &:hover{
-            background-color: rgb(57, 57, 57);
+            background-color: rgb(43, 43, 43);
         }
 
         @media (max-width:650px) {
@@ -115,6 +242,9 @@
         opacity: 1;
 
     }
+    &:hover .game-price{
+        color: var(--text);
+    }
         &:hover .game-name-container{
             opacity: 1;
     
@@ -122,8 +252,9 @@
 
         .game-name-container{
 
-            background-color: var(--text);
-            border: 1px solid var(--border);
+            // background-color: var(--text);
+            color: var(--text);
+            // border: 1px solid var(--border);
         
         
             display: grid;
@@ -161,6 +292,12 @@
             }
       
         }
+        .game-price{
+            // color: rgb(0, 0, 0)
+            font-weight: bold;
+            font-size: 1.1em;
+            
+        }
     }
 }
 
@@ -195,33 +332,46 @@
     align-items: center;
     justify-items: center;
     justify-content: space-between;
+    width: 90%;
 
-    position: absolute;
-    bottom: 1em;
-    left: 5em;
-    right: 5em;
-    .page-idx{
-        // font-size: 1.2em;
-        // color: var(--blue);
-        border: 1px solid var(--text);
-        background-color: var(--border);
-        border-radius: 5px;
-        padding-right: 5px;
-        padding-left: 5px;
-        width: 20px;
-        font-weight: bold;
+    // position: absolute;
+    // bottom: 1em;
+    // left: 5em;
+    // right: 5em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    margin-left: 5em;
+    margin-right: 5em;
+    
+    @media (max-width:605px) {
+        margin-left: 1em;
+        margin-right: 1em;
     }
+}
+.page-idx{
+    // font-size: 1.2em;
+    // color: var(--blue);
+    border: 1px solid var(--text);
+    background-color: var(--border);
+    border-radius: 5px;
+    padding-right: 5px;
+    padding-left: 5px;
+    width: 20px;
+    font-weight: bold;
+}
 .buttons-container{
-    display: flex;
-    gap: 15px;
-    button{
-        width: 10px;
-    }
+display: flex;
+gap: 15px;
+// background-color: #B0C4DE;
+padding: 5px 1em 5px 1em;
+border-radius: 5px;
+button{
+    width: 10px;
 }
 
     @media (max-width:605px) {
-        position: fixed;
-        z-index: 4;
+        // position: fixed;
+        // z-index: 4;
         display: flex;
         bottom: 1em;
         left: 2em;

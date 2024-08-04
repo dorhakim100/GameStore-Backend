@@ -1,8 +1,8 @@
 .new-review-container{
     display: flex;
     flex-direction: column;
-    grid-row: 2/3; 
-    grid-column: 1/-1; 
+    grid-row: 1/2; 
+    grid-column: 1/2; 
     gap: 10px;
 }
 
@@ -25,11 +25,12 @@
 
 .review-container{
     grid-column: 1/-1;
-    width: 40vw;
+    // width: 40vw;
     // width: 50vw;
-
+    // justify-self: center;
     display: grid;
-    grid-template-rows: repeat(2,1fr);
+    grid-template-columns: repeat(2,1fr);
+    grid-template-rows: 1fr;
     align-items: center;
     justify-items: center;
     @media (max-width:800px) {
@@ -39,13 +40,16 @@
             min-width: 320px;
             overflow-x: scroll;
         }
+        .review{
+            width: 90%;
+        }
     }
     gap: 15px;
 }
 
 .reviews-container{
      grid-row: 1/2; 
-     grid-column: 1/-1; 
+     grid-column: 2/3; 
 
     overflow:auto;
 
@@ -54,13 +58,15 @@
     gap: 10px;
 
     height: 30vh;
-    width: 40vw;
+    // width: 40vw;
+  
 }
 
 .review{
     h4{
         color: white;
     }
+    width: 40vw;
     border: 2px solid var(--text);
     border-radius: 5px;
 

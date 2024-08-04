@@ -41,15 +41,19 @@ export function Home() {
 
   function onSelectCompany(company) {
     setFilterBy({ ...filterBy, companies: [company], pageIdx: 0 })
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+
     navigate(`/game`)
   }
 
   return (
     <section className='section-container home'>
-      <h2>"Your Ultimate Destination for Gaming Excellence!"</h2>
+      <h2 className='home-header'>
+        "Your Ultimate Destination for Gaming Excellence!"
+      </h2>
       <SlideShow img1={img1} img2={img2} img3={img3} />
 
-      <h4>Choose your console</h4>
+      <h4 className='home-header'>Choose your console</h4>
       <div className='companies-container'>
         <img
           onClick={() => onSelectCompany('Sony')}
@@ -71,7 +75,7 @@ export function Home() {
         />
       </div>
       <Link to={`/game`}>
-        <h4>Our Games</h4>
+        <h4 className='home-header link'>Our Games</h4>
       </Link>
       <GamesSlideShow randomGames={randomGames} />
     </section>

@@ -1,8 +1,11 @@
 
 .home{
     margin-top: 0px;
+    *{
+
+    }
     .slider-container{
-        // margin: auto;
+        margin: auto;
         // width: 80%;
         // border: 3px solid green;
         // padding: 10px;
@@ -12,9 +15,9 @@
         // right: 30px;
         // left: 30px;
         // top: 200px;
-        max-width: 85vw;
+        max-width: 90vw;
         @media (max-width:500px) {
-            max-width: 70vw;
+            // max-width: 70vw;
             
         }
         img{
@@ -25,9 +28,21 @@
     }
     
 
-    h4{
-
-
+    .home-header{
+        color: var(--text);
+        background-color: var(--purple);
+        padding: 1em;
+        border-radius: 15px;
+        transition: 0.2s;
+        margin-top: 2em;
+        
+        
+    }
+    .link{
+        background-color: var(--blue);
+    }
+    .link:hover{
+        background-color: var(--purple);
 
     }
     .companies-container{
@@ -35,13 +50,19 @@
         // bottom: 2em;
         display: flex;
         justify-content: space-around;
-        
+
+        height: 25vw;
+        min-height: 150px;
         img{
             width: 10vw;
-            max-height: 80px;
+            // max-height: 80px;
             object-fit: scale-down;
             height: auto;
+            transition: 0.3s;
             cursor: pointer;
+            &:hover{
+                scale: (1.15);
+            }
         }
     }
 
@@ -52,7 +73,7 @@
 }
 
 .loader{
-    position: absolute;
+    position: fixed;
     top: 0;
     right: 0;
     bottom: 0;
@@ -61,7 +82,7 @@
     /* width: 100vw; */
     
     background-color: rgba(0, 0, 0, 0.474);
-    
+    z-index: 20;
     img{
 
     margin-top: 50vh;
@@ -88,8 +109,12 @@
             border:3px,solid, var(--text);
 
   @media (max-width:500px) {
-                max-width: 50vw;
-                
+                // max-width: 50vw;
+                img{
+                    width: 20vw;
+                    margin-top: 5em;
+
+                }
             }
             border-radius: 5px;
 
@@ -104,11 +129,13 @@
                 overflow-x: auto;
                 padding: 0px;
                 padding-top: 15px;
-                padding-bottom: 15px;
+                // padding-bottom: 15px;
 
                 h4{
-                    width: 40px;
-
+                    // width: 40px;
+                    width: 80%;
+                    // margin-top: 5em;
+                    // align-self: end;
                 }
             }
             // justify-items: center;
@@ -123,7 +150,11 @@
         // font-size: 0.8em;
 
         img{
-            
+            &:hover{
+                scale: (1.1);
+            }
+            transition: 0.2s;
+            border-radius: 5px;
             width: 12vw;
         }
     }

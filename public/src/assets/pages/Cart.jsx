@@ -5,6 +5,7 @@ import { userService } from '../../services/user.service.js'
 import { removeGameFromCart } from '../../store/actions/user.actions.js'
 import { clearCart } from '../../store/actions/user.actions.js'
 import { checkoutStore } from '../../store/actions/user.actions.js'
+import { setCart } from '../../store/actions/user.actions.js'
 
 // import '../css/Cart.css'
 import {
@@ -13,28 +14,48 @@ import {
 } from '../../services/event-bus.service.js'
 import { utilService } from '../../services/util.service.js'
 
-export function Cart({ toggleCart, setScore }) {
+export function Cart({ toggleCart, setScore, localCart, setLocalCart }) {
   const user = useSelector(
     (stateSelector) => stateSelector.userModule.loggedInUser
   )
-  const storeCart = useSelector(
+  let storeCart = useSelector(
     (stateSelector) => stateSelector.userModule.shoppingCart
   )
+  useEffect(() => {
+    console.log(storeCart)
+    if (!user) {
+      return
+    } else {
+      // setCart(user.gamesInCart)
+      // setLocalCart(user.gamesInCart)
+    }
+    // console.log(user)
+    // console.log(storeCart)
+  }, [user])
 
   const navigate = useNavigate()
   const initialValue = 0
 
-  const [localCart, setLocalCart] = useState([])
+  // const [localCart, setLocalCart] = useState([])
 
   const [quantity, setQuantity] = useState()
 
   const registeredGames = []
 
-  function onRemoveFromCart(gameId) {
-    removeGameFromCart(gameId)
+  async function onRemoveFromCart(gameId) {
+    try {
+      const updatedUser = await removeGameFromCart(gameId)
+      showSuccessMsg('Game removed')
+      setLocalCart(updatedUser.gamesInCart)
+      setCart(updatedUser.gamesInCart)
+    } catch (err) {
+      console.log(err)
+      showErrorMsg(`Couldn't add game`)
+    }
   }
 
-  function onAddGameToCart(game) {
+  async function onAddGameToCart(game) {
+    console.log(game)
     if (!game.inStock) {
       showErrorMsg('Game is not in stock')
       return
@@ -45,14 +66,15 @@ export function Cart({ toggleCart, setScore }) {
 
       return
     }
-    addGameToCart(game)
-      .then(() => {
-        // userService.addGameToCart(game)
-        showSuccessMsg('Game added')
-      })
-      .catch((err) => {
-        showErrorMsg(`Couldn't add game`)
-      })
+    try {
+      const updatedUser = await addGameToCart(game)
+      showSuccessMsg('Game added')
+      setLocalCart(updatedUser.gamesInCart)
+      toggleCart()
+    } catch (err) {
+      console.log(err)
+      showErrorMsg(`Couldn't add game`)
+    }
   }
 
   function onClearCart() {

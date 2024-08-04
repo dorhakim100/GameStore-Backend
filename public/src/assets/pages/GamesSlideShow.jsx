@@ -14,9 +14,25 @@ function MultipleItems({ randomGames }) {
   const settings = {
     dots: true,
     infinite: true,
-    speed: 500,
+    speed: 1500,
+    autoplay: true,
+    autoplaySpeed: 7000,
     slidesToShow: 3,
     slidesToScroll: 3,
+    responsive: [
+      {
+        breakpoint: 500,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          dots: true,
+          infinite: true,
+          speed: 1500,
+          autoplay: true,
+          autoplaySpeed: 6500,
+        },
+      },
+    ],
   }
   return (
     <div className='slider-container'>
@@ -25,7 +41,13 @@ function MultipleItems({ randomGames }) {
           {/* <div className='games-card-container'> */}
           {randomGames.map((game) => {
             return (
-              <Link to={`/game/${game._id}`} key={game}>
+              <Link
+                to={`/game/${game._id}`}
+                key={game}
+                onClick={() => {
+                  window.scrollTo({ top: 0, behavior: 'smooth' })
+                }}
+              >
                 <div className='game-card-container'>
                   <div className='title-container'>
                     <img src={game.cover} alt='' />

@@ -1,0 +1,26 @@
+// Footer Styles
+
+.footer {
+    background-color: #313131;
+    color: var(--text);
+    padding: 1em;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    border-radius: 5px;
+    margin-top: 1em;
+    margin-left: 0;
+    margin-right: 0;
+    z-index: 10;
+  
+    .links-container {
+        display: flex;
+        justify-content: space-around;
+        i{
+            cursor: pointer;
+            font-size: 1.5em;
+        }
+    }
+}
+     

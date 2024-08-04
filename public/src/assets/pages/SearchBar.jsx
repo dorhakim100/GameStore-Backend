@@ -13,6 +13,7 @@ import { useState, useRef, useEffect } from 'react'
 import { utilService } from '../../services/util.service.js'
 import { useSelector } from 'react-redux'
 import { setFilterBy } from '../../store/actions/game.actions.js'
+import { gameService } from '../../services/game.service.js'
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -142,7 +143,14 @@ export function SearchBar({ icon, navigate, toggleNavBar }) {
             component='div'
             sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
           >
-            <div className='logo-container' onClick={() => navigate('/')}>
+            <div
+              className='logo-container'
+              onClick={() => {
+                setFilterBy(gameService.getDefaultFilter())
+                navigate('/')
+                window.scrollTo({ top: 0, behavior: 'smooth' })
+              }}
+            >
               <h1>Game Store</h1>
               <img className='icon' src={icon} alt='' />
             </div>

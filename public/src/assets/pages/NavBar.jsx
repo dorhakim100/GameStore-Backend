@@ -11,63 +11,69 @@ import { userService } from '../../services/user.service.js'
 
 export function NavBar({ navBarRef, toggleCart, toggleNavBar }) {
   const [user, setUser] = useState(userService.getLoggedinUser())
-
+  const navigate = useNavigate()
   return (
     <div className='nav-bar-container' ref={navBarRef}>
       <nav className='app-nav'>
-        <NavLink
+        <Button
+          className='nav-button'
+          variant='contained'
           onClick={() => {
-            event.preventDefault()
-
+            // event.preventDefault()
+            navigate('/')
             toggleNavBar()
           }}
-          to='/'
         >
           Home
-        </NavLink>
-        <NavLink
+        </Button>
+        <Button
+          className='nav-button'
+          variant='contained'
           onClick={() => {
-            event.preventDefault()
-            setFilterBy(gameService.getDefaultFilter())
+            // event.preventDefault()
+            navigate('/game')
             toggleNavBar()
           }}
-          to='/game'
         >
           Games
-        </NavLink>
-        <NavLink
+        </Button>
+        <Button
+          className='nav-button'
+          variant='contained'
           onClick={() => {
-            event.preventDefault()
-
+            // event.preventDefault()
+            navigate('/dashboard')
             toggleNavBar()
           }}
-          to='/dashboard'
         >
           Dashboard
-        </NavLink>
-        <NavLink
+        </Button>
+        <Button
+          className='nav-button'
+          variant='contained'
           onClick={() => {
-            event.preventDefault()
-
+            // event.preventDefault()
+            navigate('/about')
             toggleNavBar()
           }}
-          to='/about'
         >
           About
-        </NavLink>
+        </Button>
         {user && (
-          <NavLink
+          <Button
+            className='nav-button'
+            variant='contained'
             onClick={() => {
-              event.preventDefault()
-
+              // event.preventDefault()
+              navigate(`user/${user._id}`)
               toggleNavBar()
             }}
-            to={`/user/${user._id}`}
           >
             My Account
-          </NavLink>
+          </Button>
         )}
         <Button
+          className='nav-button'
           variant='contained'
           onClick={() => {
             toggleCart()

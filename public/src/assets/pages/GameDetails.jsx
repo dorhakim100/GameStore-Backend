@@ -24,6 +24,7 @@ import { userService } from '../../services/user.service.js'
 import { setIsLoadingFalse } from '../../store/actions/game.actions.js'
 import { setIsLoadingTrue } from '../../store/actions/game.actions.js'
 import { setFilterBy } from '../../store/actions/game.actions.js'
+import { setCart } from '../../store/actions/user.actions.js'
 
 export function GameDetails() {
   const params = useParams()
@@ -72,7 +73,7 @@ export function GameDetails() {
       })
   }
 
-  function onAddGameToCart(game) {
+  async function onAddGameToCart(game) {
     if (!game.inStock) {
       showErrorMsg('Game is not in stock')
       return
@@ -83,15 +84,16 @@ export function GameDetails() {
 
       return
     }
-    addGameToCart(game)
-      .then(() => {
-        // userService.addGameToCart(game)
-        showSuccessMsg('Game added')
-        // navigate(`/game`)
-      })
-      .catch((err) => {
-        showErrorMsg(`Couldn't add game`)
-      })
+    try {
+      const updatedUser = await addGameToCart(game)
+      console.log(updatedUser)
+      setUser(updatedUser)
+      setCart(updatedUser.gamesInCart)
+      showSuccessMsg('Game added')
+    } catch (err) {
+      console.log(err)
+      showErrorMsg(`Couldn't add game`)
+    }
   }
 
   function onSelectLabel(label) {
@@ -101,34 +103,38 @@ export function GameDetails() {
 
   return (
     <section className='section-container game-details'>
-      {isLoading && (
+      {/* {isLoading && (
         <div className='loader'>
           <img src={loader} alt='' />
         </div>
-      )}
+      )} */}
       <div className='game-page'>
         <div className='buttons-container'>
-          <Button variant='outlined'>
-            <Link to={`/game`} className='back-button'>
+          <Link
+            to={`/game`}
+            className='back-button'
+            onClick={() => setFilterBy(gameService.getDefaultFilter())}
+          >
+            <Button variant='outlined'>
               <i className='fa-solid fa-rotate-left'></i>
-            </Link>
-          </Button>
+            </Button>
+          </Link>
           {user.isAdmin && (
             <div className='buttons-container'>
               <button
                 onClick={() => onRemoveGame(game._id)}
                 className='fa-solid fa-trash'
               ></button>
-              <button>
-                <Link to={`/game/edit/${game._id}`}>
+              <Link to={`/game/edit/${game._id}`}>
+                <button>
                   <i className='fa-solid fa-pen-to-square'></i>
-                </Link>
-              </button>
+                </button>
+              </Link>
             </div>
           )}
         </div>
-        {!game.inStock && <span className='unavailable'>OUT OF STOCK</span>}
         <div className='cover-container'>
+          {!game.inStock && <span className='unavailable'>OUT OF STOCK</span>}
           {/* {user.isAdmin && (
             <section className='buttons-container'>
               <button
@@ -144,14 +150,19 @@ export function GameDetails() {
           )} */}
           <img className='game-details-cover' src={game.cover} alt='' />
         </div>
-        {user && (
-          <Button variant='outlined' onClick={() => onAddGameToCart(game)}>
-            Add to Cart
-          </Button>
-        )}
-        <h2>{game.name}</h2>
-        <h3>{game.price}$</h3>
-        <p>{game.preview}</p>
+        <div className='add-to-cart-container'>
+          <h2>{game.name}</h2>
+          {user && (
+            <Button variant='contained' onClick={() => onAddGameToCart(game)}>
+              Add to Cart
+            </Button>
+          )}
+          <h3>{game.price}$</h3>
+        </div>
+        <div className='preview'>
+          <h3>Preview</h3>
+          <p>{game.preview}</p>
+        </div>
         {/* {game.company.map((company) => {
         return <h4>{company}</h4>
       })} */}

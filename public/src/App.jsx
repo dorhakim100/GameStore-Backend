@@ -17,6 +17,7 @@ import { UserDetails } from './assets/pages/UserDetails.jsx'
 import { About } from './assets/pages/About.jsx'
 import { AboutTeam } from './assets/pages/AboutTeam.jsx'
 import { AboutVision } from './assets/pages/AboutVision.jsx'
+import { AppFooter } from './assets/pages/Footer.jsx'
 
 import { store } from '../src/store/store.js'
 
@@ -46,6 +47,7 @@ export function App() {
               </Routes>
             </main>
           </section>
+          <AppFooter />
         </Router>
       </Provider>
     </>

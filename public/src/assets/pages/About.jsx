@@ -1,5 +1,7 @@
 import { GoogleMap } from './GoogleMap.jsx'
 import { AboutPreview } from './AboutPreview.jsx'
+import { AboutTeam } from './AboutTeam.jsx'
+import { AboutVision } from './AboutVision.jsx'
 
 import { Link, useNavigate, Outlet } from 'react-router-dom'
 import { useState } from 'react'
@@ -37,7 +39,7 @@ export function About() {
 
         <div className='preview-container'>
           <h3>Who we are?</h3>
-          <nav className='about-nav-container'>
+          {/* <nav className='about-nav-container'>
             <Link replace to='/about/team'>
               Team
             </Link>
@@ -45,7 +47,9 @@ export function About() {
               Vision
             </Link>
           </nav>
-          <Outlet />
+          <Outlet /> */}
+          <AboutVision />
+          <AboutTeam />
         </div>
         <div className='map-container'>
           <h3>Visit us</h3>

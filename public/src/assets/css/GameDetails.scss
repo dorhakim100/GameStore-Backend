@@ -1,29 +1,55 @@
 .section-container.game-details{
+    width: 90vw;
     max-width: 1800px;
-    margin-top: 4em;
+    margin-top: 8em;
 
     @media (min-width:1200px) {
-        display: grid;
-        grid-template-columns: repeat(2,1fr);
+        // display: grid;
+        // grid-template-columns: repeat(2,1fr);
 
 
         .game-page{
             grid-column: 1/2;
             grid-row: 1/-1;
+
         }
         .review-container{
             
-            grid-row: 1/-1;
-            grid-column: 2/3;
+            // grid-row: 1/-1;
+            grid-column: 1/-1;
         }
     }
     .game-page{
-        display: flex;
-        flex-direction: column;
-    
+
+                display: grid;
+            grid-template-columns: repeat(2,1fr);
         justify-items: center;
         align-items: center;
         gap: 1em;
+        @media (max-width:500px) {
+            display: flex;
+            flex-direction: column;
+            
+        }
+
+        h2{
+            font-size: 5vw;
+            font-size: 3em;
+        }
+        .preview{
+            grid-column: 1/-1;
+        }
+        
+        h3{
+            grid-column: 1/-1;
+            font-size: 2em;
+
+        }
+
+        .labels-container{
+            grid-column: 1/-1;
+
+        }
 
     }
     .cover-container{
@@ -57,8 +83,13 @@
       
             }
             .game-details-cover{
-                width: 250px;
+                // width: 250px;
+                width: 35vw;
+                max-width: 400px;
+                min-width: 150px;
+                border-radius: 5px;
             }
+            grid-column: 1/2;
         }
 }     
  .unavailable{
@@ -68,11 +99,12 @@
                 border-radius: 5px;
                 border: 1px solid var(--mid-importance);
             
-                position: relative;
-                left: 0px;
-                top: 3em;
-            
+                position: absolute;
+                // left: 0px;
+                // top: 3em;
+                // height: 100%;
                 transform: rotate(10deg);
+                z-index: 2;
 
             }
 

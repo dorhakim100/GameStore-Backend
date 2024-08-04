@@ -6,6 +6,7 @@ import {
   REMOVE_GAME_FROM_CART,
   SET_USER,
   SET_USER_SCORE,
+  SET_CART,
 } from '../reducers/user.reducer.js'
 import { store } from '../store.js'
 
@@ -65,9 +66,9 @@ export function addGameToCart(game) {
   console.log(game)
   return userService
     .addGameToCart(game)
-    .then((addedGame) => {
-      console.log(addedGame)
+    .then((updatedUser) => {
       store.dispatch({ type: ADD_GAME_TO_CART, game })
+      return updatedUser
     })
     .catch((err) => {
       console.log('user actions -> Cannot add game', err)
@@ -80,6 +81,7 @@ export function removeGameFromCart(gameId) {
     .removeGameFromCart(gameId)
     .then((updatedUser) => {
       store.dispatch({ type: REMOVE_GAME_FROM_CART, updatedUser })
+      return updatedUser
     })
     .catch((err) => {
       console.log('user actions -> Cannot remove game', err)
@@ -113,4 +115,8 @@ export function checkoutStore(score) {
       console.log('user actions -> Cannot checkout cart', err)
       throw err
     })
+}
+
+export function setCart(updatedCart) {
+  const cart = store.dispatch({ type: SET_CART, updatedCart })
 }
