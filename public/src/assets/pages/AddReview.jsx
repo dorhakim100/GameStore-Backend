@@ -6,6 +6,8 @@ import { showSuccessMsg } from '../../services/event-bus.service.js'
 import { showErrorMsg } from '../../services/event-bus.service.js'
 import { saveGame } from '../../store/actions/game.actions.js'
 
+import { Button } from '@mui/material'
+
 import Swal from 'sweetalert2'
 
 export function AddReview({ game, setReviews }) {
@@ -21,14 +23,15 @@ export function AddReview({ game, setReviews }) {
   })
 
   function onStarClick({ target }) {
-    rating.current = +target.value
-    console.log(rating.current)
+    // rating.current = +target.value
+    // console.log(rating.current)
     // setReview({
     //   fullName: fullName,
     //   rating: rating,
     //   date: date,
     //   txt: txt,
     // })
+    console.log('bla')
   }
 
   // useEffect(() => {}, [])
@@ -103,14 +106,16 @@ export function AddReview({ game, setReviews }) {
           onChange={handleChange}
         />
       </div>
-      <label htmlFor='date'>Date:</label>
-      <input
-        type='date'
-        id='date'
-        name='date'
-        value={date}
-        onChange={handleChange}
-      />
+      <div className='date-container'>
+        <label htmlFor='date'>Date:</label>
+        <input
+          type='date'
+          id='date'
+          name='date'
+          value={date}
+          onChange={handleChange}
+        />
+      </div>
       <textarea
         className='review-conten'
         name='txt'
@@ -173,9 +178,9 @@ export function AddReview({ game, setReviews }) {
             1 star
           </label>
         </div>
-        <button className='btn' onClick={onAddReview}>
+        <Button variant='contained' className='btn' onClick={onAddReview}>
           Submit
-        </button>
+        </Button>
       </div>
     </div>
   )
