@@ -4,6 +4,12 @@ import { Link, useParams, useNavigate } from 'react-router-dom'
 
 import { Button } from '@mui/material'
 
+import DeleteIcon from '@mui/icons-material/Delete'
+import SendIcon from '@mui/icons-material/Send'
+import Stack from '@mui/material/Stack'
+import EditIcon from '@mui/icons-material/Edit'
+import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn'
+
 import { useEffect, useState } from 'react'
 
 import { gameService } from '../../services/game.service.js'
@@ -115,20 +121,32 @@ export function GameDetails() {
             className='back-button'
             onClick={() => setFilterBy(gameService.getDefaultFilter())}
           >
-            <Button variant='outlined'>
-              <i className='fa-solid fa-rotate-left'></i>
+            <Button
+              style={{ width: '100px', fontSize: '0.8em' }}
+              variant='outlined'
+              startIcon={<KeyboardReturnIcon />}
+            >
+              Return
             </Button>
           </Link>
           {user.isAdmin && (
             <div className='buttons-container'>
-              <button
+              <Button
+                style={{ width: '100px', fontSize: '0.8em' }}
+                variant='outlined'
                 onClick={() => onRemoveGame(game._id)}
-                className='fa-solid fa-trash'
-              ></button>
+                startIcon={<DeleteIcon />}
+              >
+                Delete
+              </Button>
               <Link to={`/game/edit/${game._id}`}>
-                <button>
-                  <i className='fa-solid fa-pen-to-square'></i>
-                </button>
+                <Button
+                  style={{ width: '100px', fontSize: '0.8em' }}
+                  variant='outlined'
+                  startIcon={<EditIcon />}
+                >
+                  Edit
+                </Button>
               </Link>
             </div>
           )}

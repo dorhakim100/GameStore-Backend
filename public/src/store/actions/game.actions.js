@@ -93,6 +93,7 @@ export function getAllGames() {
     .query(allGamesFilter)
     .then((games) => {
       store.dispatch({ type: SET_GAMES, games })
+      return games
     })
     .catch((err) => {
       console.log('game action -> Cannot load games', err)

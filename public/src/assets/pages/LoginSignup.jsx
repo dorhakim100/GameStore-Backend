@@ -72,6 +72,7 @@ export function LoginSignup({ onSetUser, toggleLoginPage }) {
         handleSubmit={handleSubmit}
         isSignup={isSignup}
       /> */}
+      <h3>{isSignup ? 'Signup' : 'Login'}</h3>
       <form className='login-form' onSubmit={handleSubmit}>
         <input
           type='text'

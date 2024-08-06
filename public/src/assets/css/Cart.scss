@@ -8,12 +8,13 @@
 
     height: 600px;
     width: 500px;
-
-
+    border-radius: 5px;
+    
+    
     @media (max-width:450px) {
         width: 340px;
     }
-
+    
     .x-button{
         position: absolute;
         inset-inline-end: 1em;
@@ -21,7 +22,7 @@
         padding: 5px;
         border-radius: 5px;
     }
-
+    
     .games-in-cart-container{
         display: flex;
         flex-direction: column;
@@ -31,18 +32,19 @@
         .cart-item-container{
             display: flex;
         }
-
+        
         .game-in-cart-container{
             display: grid;
             grid-template-columns: repeat(4,1fr);
             /* justify-content: space-between; */
             align-items: center;
             justify-items: center;
-        
+            
             background-color: rgb(51, 51, 51);
             border: 1px solid var(--text);
             width: 100%;
-
+            
+            border-radius: 5px;
             &:nth-of-type(2n){
                 background-color: rgb(97, 97, 97);
             }

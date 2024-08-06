@@ -6,6 +6,8 @@ import { setIsLoadingTrue } from '../../store/actions/game.actions.js'
 
 import { Button, Autocomplete, TextField } from '@mui/material'
 import { styled, alpha } from '@mui/material/styles'
+import FilterAltIcon from '@mui/icons-material/FilterAlt'
+
 import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'
 import Toolbar from '@mui/material/Toolbar'
@@ -200,6 +202,7 @@ export function GameFilter({ filterBy }) {
         variant='contained'
         className='is-filtering-button'
         onClick={() => onSetIsFiltering()}
+        startIcon={<FilterAltIcon />}
       >
         Filter
       </Button>
