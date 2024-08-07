@@ -23,7 +23,7 @@ gameRoutes.get('/', log, getGames)
 // gameRoutes.get('/', getGames)
 gameRoutes.get('/:id', getGameById)
 gameRoutes.post('/', requireAdmin, addGame)
-gameRoutes.put('/:id', requireAdmin, updateGame)
+gameRoutes.put('/:id', requireAuth, updateGame)
 gameRoutes.delete('/:id', requireAdmin, removeGame)
 // router.delete('/:id', requireAuth, requireAdmin, removeGame)
 

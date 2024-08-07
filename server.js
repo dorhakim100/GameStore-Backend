@@ -8,6 +8,9 @@ import { fileURLToPath } from 'url'
 import { MongoClient } from 'mongodb'
 
 import { logger } from './services/logger.service.js'
+
+import { setupAsyncLocalStorage } from './middlewares/setupAls.middleware.js'
+
 logger.info('server.js loaded...')
 
 const app = express()
@@ -40,6 +43,8 @@ if (process.env.NODE_ENV === 'production') {
 import { authRoutes } from './api/auth/auth.routes.js'
 import { userRoutes } from './api/user/user.routes.js'
 import { gameRoutes } from './api/game/game.routes.js'
+
+app.all('*', setupAsyncLocalStorage)
 
 // routes
 app.use('/api/auth', authRoutes)
